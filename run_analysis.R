@@ -1,7 +1,7 @@
 ## run_analysis.R does the following:
 ## 1. Merges the training and the test sets to create one data set.
 ##    In .\UCI HAR Dataset\test\, X_test.txt,subject_test.txt and y_test.txt
-##    In .\UCI HAR Dataset\test\, X_test.txt,subject_test.txt and y_test.txt
+##    In .\UCI HAR Dataset\train\, X_train.txt,subject_train.txt and y_train.txt
 ## 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
 ## 3. Uses descriptive activity names to name the activities in the data set
 ## 4. Appropriately labels the data set with descriptive variable names. 
@@ -14,9 +14,15 @@
 
 ## load required libraries ##
 library(reshape2)
+library(downloader)
 
-## set working directory. "UCI HAR Dataset" must be a sub-dir of your working direcory ##
+## set working directory. ##
 setwd("~/R/Getting and Cleaning Data/")
+
+## Download UCI HAR Dataset and extract the data ##
+data_url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download(data_url, dest="dataset.zip", mode="wb") 
+unzip ("dataset.zip")
 
 ####################################################################################################
 ## Read input files                                                                               ##
@@ -85,5 +91,5 @@ melted_data <- melt(merged_and_clean, id = c("activity","subject"), measure.vars
 ####################################################################################################
 
 summary_data <- dcast(melted_data, activity + subject ~ variable,mean)
-write.table(merged_and_clean, "summary_by_activity_and_subject.txt", row.name=FALSE)
+write.table(summary_data, "summary_by_activity_and_subject.txt", row.name=FALSE)
 
