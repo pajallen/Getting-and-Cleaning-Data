@@ -56,14 +56,14 @@ activity <- read.table("./UCI HAR Dataset/activity_labels.txt")
 
 mean_or_std <- grep("-mean\\(\\)|-std\\(\\)",features[ ,2])  ## find mean() or std()
 data <- data[,mean_or_std] ## select only columns containing mean() or std()
-names(data) <- tolower(gsub("\\(|\\)", "", features[mean_or_std,2])) ## update data column names 
+names(data) <- gsub("-","",tolower(gsub("\\(|\\)", "", features[mean_or_std,2]))) ## update data column names 
                                                                      ## with descriptive names
 
 ####################################################################################################
 ## Translate label values to descriptive activity names and name column accordingly               ##
 ####################################################################################################
 
-activity[, 2] <- tolower(activity[, 2])
+activity[, 2] <- tolower(sub("_","",activity[,2]))
 label[, 1] <- activity[label[, 1],2]
 names(label) <- "activity"
 
@@ -92,4 +92,3 @@ melted_data <- melt(merged_and_clean, id = c("activity","subject"), measure.vars
 
 summary_data <- dcast(melted_data, activity + subject ~ variable,mean)
 write.table(summary_data, "summary_by_activity_and_subject.txt", row.name=FALSE)
-
