@@ -115,7 +115,7 @@ fbodyaccstdx
 fbodyaccstdy        
 fbodyaccstdz           
 fbodyaccjerkmeanx   
-fbodyaccjerkmeany
+fbodyaccjerkmeany 
 fbodyaccjerkmeanz  
 fbodyaccjerkstdx       
 fbodyaccjerkstdy    
@@ -128,9 +128,9 @@ fbodygyrostdy
 fbodygyrostdz          
 fbodyaccmagmean      
 fbodyaccmagstd       
-fbodybodyaccjerkmagmean
+fbodybodyaccjerkmagmean 
 fbodybodyaccjerkmagstd  
 fbodybodygyromagmean   
 fbodybodygyromagstd    
-fbodybodygyrojerkmagmean
+fbodybodygyrojerkmagmean 
 fbodybodygyrojerkmagstd 
